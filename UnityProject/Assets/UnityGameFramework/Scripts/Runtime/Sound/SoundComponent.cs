@@ -104,7 +104,7 @@ namespace UnityGameFramework.Runtime
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
 #else
-            ISceneManager sceneManager = GameFrameworkEntry.GetModule<ISceneManager>();
+            ISceneManager sceneManager = GameFrameworkSystem.GetModule<ISceneManager>();
             if (sceneManager == null)
             {
                 Log.Fatal("Scene manager is invalid.");

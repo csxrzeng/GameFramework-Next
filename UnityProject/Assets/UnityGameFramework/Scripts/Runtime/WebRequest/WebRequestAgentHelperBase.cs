@@ -35,6 +35,15 @@ namespace UnityGameFramework.Runtime
         public abstract void Request(string webRequestUri, byte[] postData, object userData);
 
         /// <summary>
+        /// 通过 Web 请求代理辅助器发送 Web 请求。
+        /// </summary>
+        /// <param name="webRequestUri">Web 请求地址。</param>
+        /// <param name="postData">要发送的数据流。</param>
+        /// <param name="contentType">请求类型，传null的话默认application/json</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public abstract void Request(string webRequestUri, byte[] postData, string contentType, object userData);
+
+        /// <summary>
         /// 重置 Web 请求代理辅助器。
         /// </summary>
         public abstract void Reset();

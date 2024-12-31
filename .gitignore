@@ -18,3 +18,5 @@ Configs/.cache.meta
 GenerateDatas/
 
 Modules/
+
+~$*.xls?

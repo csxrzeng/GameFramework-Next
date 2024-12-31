@@ -134,6 +134,14 @@ namespace GameFramework
 
                 current = current.Next;
             }
+            if (current != null)
+            {
+                s_GameFrameworkModules.AddBefore(current, module);
+            }
+            else
+            {
+                s_GameFrameworkModules.AddLast(module);
+            }
 
             if (moduleType.GetInterface(nameof(IUpdateModule)) != null)
             {

@@ -1,6 +1,10 @@
 ﻿using GameFramework;
 using GameFramework.WebRequest;
 using System;
+using System.Text;
+
+using UnityEditor.PackageManager.Requests;
+
 #if UNITY_5_4_OR_NEWER
 using UnityEngine.Networking;
 #else
@@ -95,7 +99,34 @@ namespace UnityGameFramework.Runtime
                 return;
             }
 
-            m_UnityWebRequest = UnityWebRequest.Post(webRequestUri, Utility.Converter.GetString(postData));
+            m_UnityWebRequest = UnityWebRequest.PostWwwForm(webRequestUri, Utility.Converter.GetString(postData));
+#if UNITY_2017_2_OR_NEWER
+            m_UnityWebRequest.SendWebRequest();
+#else
+            m_UnityWebRequest.Send();
+#endif
+        }
+
+        /// <summary>
+        /// 通过 Web 请求代理辅助器发送请求。
+        /// </summary>
+        /// <param name="webRequestUri">要发送的远程地址。</param>
+        /// <param name="postData">要发送的数据流。</param>
+        /// <param name="contentType">请求类型，传null的话默认application/json</param>
+        /// <param name="userData">用户自定义数据。</param>
+        public override void Request(string webRequestUri, byte[] postData, string contentType, object userData)
+        {
+            if (m_WebRequestAgentHelperCompleteEventHandler == null || m_WebRequestAgentHelperErrorEventHandler == null)
+            {
+                Log.Fatal("Web request agent helper handler is invalid.");
+                return;
+            }
+            m_UnityWebRequest = new UnityWebRequest(webRequestUri, "POST");
+            m_UnityWebRequest.downloadHandler = new DownloadHandlerBuffer();
+            m_UnityWebRequest.uploadHandler = new UploadHandlerRaw(postData)
+            {
+                contentType = contentType ?? "application/json"
+            };
 #if UNITY_2017_2_OR_NEWER
             m_UnityWebRequest.SendWebRequest();
 #else
