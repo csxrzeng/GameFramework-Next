@@ -23,7 +23,9 @@ namespace GameMain
         public string Label_Load_UnPackError = "资源解压失败，请点击确定重新启动游戏";
         public string Label_Load_Load_Progress = "正在载入...{0}%";
         public string Label_Load_Download_Progress = "正在下载...{0}%";
-        public string Label_Load_Init = "初始化...";
+        public string Label_Load_Init = "初始化资源...";
+        public string Label_Load_InitRetry = "重新初始化资源...";
+        public string Label_Init_Failed = "资源初始化失败！点击确认重试 \n \n <color=#FF0000>原因：{0}</color>";
         public string Label_Net_UnReachable = "当前网络不可用，请检查本地网络设置后点击确认进行重试";
         public string Label_Net_ReachableViaCarrierDataNetwork = "当前是移动网络，是否继续下载";
         public string Label_Net_Error = "网络异常，请重试";
@@ -66,6 +68,24 @@ namespace GameMain
         public string Label_Had_Update = "检测到有版本更新...";
         public string Label_RequestVersionIng = "正在向服务器请求版本信息中...";
         public string Label_RequestVersionInfo = "正在向服务器请求版本信息{0}次";
+
+        public string Label_UpdateVersion = "更新静态版本文件...";
+        public string Label_UpdateVersionFailed = "用户尝试更新静态版本失败！点击确认重试 \n \n <color=#FF0000>原因：{0}</color>";
+
+        public string Label_ClearCache = "清理未使用的缓存文件...";
+        public string Label_ClearCacheDone = "清理完成 即将进入游戏...";
+
+        public string Label_CreateDownloader = "准备开始更新资源...";
+        public string Label_DownloaderTips = "发现需要更新的资源，共{0}，总大小{1}MB";
+
+        public string Label_DownloaderStart = "开始下载更新资源...";
+        public string Label_DownloaderDone = "下载更新资源完成";
+        public string Label_DownloadProgress = "正在更新，已更新{0}，总更新{1}，已更新大小{2}，总更新大小{3}，更新进度{4}，当前网速{5}/s";
+        public string Label_LeftTime = "剩余时间 {0}({1}/s)";
+
+        public string Label_UpdateManifest = "更新资源列表文件...";
+        public string Label_UpdateManifestFailed = "用户尝试更新清单失败！点击确认重试 \n \n <color=#FF0000>原因：{0}</color>";
+        public string Label_Download_Complete = "加载完成";
     }
 
     public class LoadText : TextMode

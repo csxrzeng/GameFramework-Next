@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using GameFramework;
 using UnityGameFramework.Runtime;
 using YooAsset;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
@@ -87,9 +88,9 @@ namespace GameMain
             Log.Error($"{message}");
 
             // 打开启动UI。
-            UILoadMgr.Show(UIDefine.UILoadUpdate, $"资源初始化失败！");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_Load_Init);
 
-            UILoadTip.ShowMessageBox($"资源初始化失败！点击确认重试 \n \n <color=#FF0000>原因{message}</color>", MessageShowType.TwoButton,
+            UILoadTip.ShowMessageBox(Utility.Text.Format(LoadText.Instance.Label_Init_Failed, message), MessageShowType.TwoButton,
                 LoadStyle.StyleEnum.Style_Retry
                 , () => { Retry(procedureOwner); }, 
                 GameModule.QuitApplication);
@@ -98,7 +99,7 @@ namespace GameMain
         private void Retry(ProcedureOwner procedureOwner)
         {
             // 打开启动UI。
-            UILoadMgr.Show(UIDefine.UILoadUpdate, $"重新初始化资源中...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_Load_InitRetry);
 
             InitPackage(procedureOwner).Forget();
         }

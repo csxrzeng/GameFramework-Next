@@ -16,9 +16,9 @@ namespace GameMain
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             _procedureOwner = procedureOwner;
-            Log.Info("清理未使用的缓存文件！");
+            Log.Info(LoadText.Instance.Label_ClearCache);
             
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"清理未使用的缓存文件...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_ClearCache);
             
             var operation = GameModule.Resource.ClearUnusedCacheFilesAsync();
             operation.Completed += Operation_Completed;
@@ -27,7 +27,7 @@ namespace GameMain
         
         private void Operation_Completed(YooAsset.AsyncOperationBase obj)
         {
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"清理完成 即将进入游戏...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_ClearCacheDone);
             
             ChangeState<ProcedureLoadAssembly>(_procedureOwner);
         }

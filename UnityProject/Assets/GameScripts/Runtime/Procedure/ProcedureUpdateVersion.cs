@@ -22,7 +22,7 @@ namespace GameMain
 
             base.OnEnter(procedureOwner);
 
-            UILoadMgr.Show(UIDefine.UILoadUpdate, $"更新静态版本文件...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_UpdateVersion);
 
             //检查设备是否能够访问互联网
             if (Application.internetReachability == NetworkReachability.NotReachable)
@@ -76,7 +76,7 @@ namespace GameMain
         {
             Log.Error(error);
 
-            UILoadTip.ShowMessageBox($"用户尝试更新静态版本失败！点击确认重试 \n \n <color=#FF0000>原因{error}</color>", MessageShowType.TwoButton,
+            UILoadTip.ShowMessageBox(LoadText.Instance.Label_UpdateVersionFailed, MessageShowType.TwoButton,
                 LoadStyle.StyleEnum.Style_Retry
                 , () => { ChangeState<ProcedureUpdateVersion>(_procedureOwner); }, UnityEngine.Application.Quit);
         }

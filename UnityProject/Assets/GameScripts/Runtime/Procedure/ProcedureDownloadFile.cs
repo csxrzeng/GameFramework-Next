@@ -33,7 +33,7 @@ namespace GameMain
             
             Log.Info("开始下载更新文件！");
             
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"开始下载更新文件...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_DownloaderStart);
             
             BeginDownload().Forget();
         }
@@ -67,7 +67,7 @@ namespace GameMain
             string currentSizeMb = (currentDownloadBytes / 1048576f).ToString("f1");
             string totalSizeMb = (totalDownloadBytes / 1048576f).ToString("f1");
             // UILoadMgr.Show(UIDefine.UILoadUpdate,$"{currentDownloadCount}/{totalDownloadCount} {currentSizeMb}MB/{totalSizeMb}MB");
-            string descriptionText = Utility.Text.Format("正在更新，已更新{0}，总更新{1}，已更新大小{2}，总更新大小{3}，更新进度{4}，当前网速{5}/s", 
+            string descriptionText = Utility.Text.Format(LoadText.Instance.Label_DownloadProgress, 
                 currentDownloadCount.ToString(), 
                 totalDownloadCount.ToString(), 
                 Utility.File.GetByteLengthString(currentDownloadBytes), 
@@ -85,7 +85,7 @@ namespace GameMain
             
             TimeSpan ts = new TimeSpan(0, 0, needTime);
             string timeStr = ts.ToString(@"mm\:ss");
-            string updateProgress = Utility.Text.Format("剩余时间 {0}({1}/s)", timeStr, Utility.File.GetLengthString((int)CurrentSpeed));
+            string updateProgress = Utility.Text.Format(LoadText.Instance.Label_LeftTime, timeStr, Utility.File.GetLengthString((int)CurrentSpeed));
             Log.Info(updateProgress);
         }
     }

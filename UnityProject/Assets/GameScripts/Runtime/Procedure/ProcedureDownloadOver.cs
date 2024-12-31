@@ -13,7 +13,7 @@ namespace GameMain
         {
             Log.Info("下载完成!!!");
             
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"下载完成...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_DownloaderDone);
         }
 
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)

@@ -81,7 +81,7 @@ namespace GameMain
 
                 if (Math.Abs(_progress - 1f) < 0.001f)
                 {
-                    UILoadMgr.Show(UIDefine.UILoadUpdate, "加载完成");
+                    UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_Download_Complete);
                 }
                 else
                 {

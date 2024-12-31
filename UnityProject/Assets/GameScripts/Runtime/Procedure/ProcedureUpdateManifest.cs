@@ -17,7 +17,7 @@ namespace GameMain
         {
             Log.Info("更新资源清单！！！");
             
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"更新清单文件...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_UpdateManifest);
             
             UpdateManifest(procedureOwner).Forget();
         }
@@ -48,8 +48,8 @@ namespace GameMain
             else
             {
                 Log.Error(operation.Error);
-                
-                UILoadTip.ShowMessageBox($"用户尝试更新清单失败！点击确认重试 \n \n <color=#FF0000>原因{operation.Error}</color>", MessageShowType.TwoButton,
+                //"用户尝试更新清单失败！点击确认重试 \n \n <color=#FF0000>原因{operation.Error}</color>"
+                UILoadTip.ShowMessageBox(LoadText.Instance.Label_UpdateManifestFailed, MessageShowType.TwoButton,
                     LoadStyle.StyleEnum.Style_Retry
                     , () => { ChangeState<ProcedureUpdateManifest>(procedureOwner); }, UnityEngine.Application.Quit);
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using GameFramework;
 using UnityGameFramework.Runtime;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
@@ -13,7 +14,7 @@ namespace GameMain
         {
             Log.Info("创建补丁下载器");
             
-            UILoadMgr.Show(UIDefine.UILoadUpdate,$"创建补丁下载器...");
+            UILoadMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_CreateDownloader);
             
             CreateDownloader(procedureOwner).Forget();
         }
@@ -42,8 +43,8 @@ namespace GameMain
                 float sizeMb = totalDownloadBytes / 1048576f;
                 sizeMb = UnityEngine.Mathf.Clamp(sizeMb, 0.1f, float.MaxValue);
                 string totalSizeMb = sizeMb.ToString("f1");
-
-                UILoadTip.ShowMessageBox($"Found update patch files, Total count {totalDownloadCount} Total size {totalSizeMb}MB", MessageShowType.TwoButton,
+                //$"Found update patch files, Total count {totalDownloadCount} Total size {totalSizeMb}MB"
+                UILoadTip.ShowMessageBox(Utility.Text.Format(LoadText.Instance.Label_DownloaderTips, totalDownloadCount, totalSizeMb), MessageShowType.TwoButton,
                     LoadStyle.StyleEnum.Style_StartUpdate_Notice
                     , () => { StartDownFile(procedureOwner: procedureOwner); }, UnityEngine.Application.Quit);
             }
